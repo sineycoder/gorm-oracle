@@ -25,6 +25,7 @@ func TestCreate(t *testing.T) {
 			DCOL: "12",
 			ECOL: a,
 			FCOL: `{"nzx": 2}`,
+			GCOL: true,
 		},
 	}
 	//tmps := &T1{
