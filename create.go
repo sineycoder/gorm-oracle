@@ -5,7 +5,6 @@ import (
 	"reflect"
 
 	clause_ "github.com/sineycoder/gorm-oracle/clause"
-	"github.com/sineycoder/gorm-oracle/utils"
 	"github.com/sineycoder/gorm-oracle/utils/slices"
 	"gorm.io/gorm"
 	"gorm.io/gorm/callbacks"
@@ -30,7 +29,6 @@ func Create(db *gorm.DB) {
 		boundVars := make(map[string]int)
 		hasBatch := false
 		values := callbacks.ConvertToCreateValues(stmt) // slice: [][]interface{}
-		replaceBool(&values)                            // true = 1, false = 0 in oracle
 		conflict, hasConflict := stmt.Clauses["ON CONFLICT"].Expression.(clause.OnConflict)
 		if hasConflict {
 			merge := clause_.Merge{}
@@ -116,15 +114,4 @@ func Create(db *gorm.DB) {
 		}
 	}
 
-}
-
-func replaceBool(values *clause.Values) {
-	for i, vs := range values.Values {
-		for j, vj := range vs {
-			switch tp := vj.(type) {
-			case bool:
-				values.Values[i][j] = utils.IfThen(tp, 1, 0)
-			}
-		}
-	}
 }
