@@ -2,6 +2,7 @@ package gorm_oracle
 
 import (
 	"database/sql"
+	"fmt"
 	"reflect"
 
 	clause_ "github.com/sineycoder/gorm-oracle/clause"
@@ -92,6 +93,7 @@ func Create(db *gorm.DB) {
 			result, err := stmt.ConnPool.ExecContext(stmt.Context, stmt.SQL.String(), stmt.Vars...)
 			if err != nil {
 				_ = db.AddError(err)
+				return
 			}
 			if !hasBatch {
 				db.RowsAffected, err = result.RowsAffected()
@@ -106,7 +108,11 @@ func Create(db *gorm.DB) {
 						case reflect.Struct:
 							if err = f.Set(stmt.Context, refV, stmt.Vars[boundVars[f.Name]].(sql.Out).Dest); err != nil {
 								_ = db.AddError(err)
+								return
 							}
+						case reflect.Map:
+							_ = db.AddError(fmt.Errorf("not support map"))
+							return
 						}
 					}
 				}
