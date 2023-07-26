@@ -21,13 +21,13 @@ func init() {
 
 type T1 struct {
 	ID   int64     // NUMBER
-	ACOL string    `gorm:"column:A_COL"`                           // NVARCHAR2
-	BCOL string    `gorm:"column:B_COL"`                           // NCLOB
-	CCOL int64     `gorm:"column:C_COL"`                           // NUMBER
-	DCOL string    `gorm:"column:D_COL"`                           // NVARCHAR2
-	ECOL time.Time `gorm:"column:E_COL;default:CURRENT_TIMESTAMP"` // timestamp
-	FCOL string    `gorm:"column:F_COL"`
-	GCOL bool      `gorm:"column:G_COL"`
+	ACol string    // NVARCHAR2
+	BCol string    // NCLOB
+	CCol int64     // NUMBER
+	DCol string    // NVARCHAR2
+	ECol time.Time `default:CURRENT_TIMESTAMP"` // timestamp
+	FCol string
+	GCol bool
 }
 
 type User struct {

@@ -11,30 +11,30 @@ func TestCreate(t *testing.T) {
 	a := time.Now()
 	tmps := []*T1{
 		{
-			ACOL: "11",
-			BCOL: "11",
-			//CCOL: 11,
-			DCOL: "11",
-			ECOL: a,
-			FCOL: `{"nzx": 1}`,
+			ACol: "11",
+			BCol: "11",
+			//CCol: 11,
+			DCol: "11",
+			ECol: a,
+			FCol: `{"nzx": 1}`,
 		},
 		{
-			ACOL: "12",
-			BCOL: "12",
-			CCOL: 12,
-			DCOL: "12",
-			ECOL: a,
-			FCOL: `{"nzx": 2}`,
-			GCOL: true,
+			ACol: "12",
+			BCol: "12",
+			CCol: 12,
+			DCol: "12",
+			ECol: a,
+			FCol: `{"nzx": 2}`,
+			GCol: true,
 		},
 	}
 	//tmps := &T1{
-	//	ACOL: "11",
-	//	BCOL: "11",
-	//	//CCOL: 11,
-	//	DCOL: "11",
-	//	ECOL: a,
-	//	FCOL: `{"nzx": 1}`,
+	//	ACol: "11",
+	//	BCol: "11",
+	//	//CCol: 11,
+	//	DCol: "11",
+	//	ECol: a,
+	//	FCol: `{"nzx": 1}`,
 	//}
 	res := db.Create(&tmps)
 	//res := db.Clauses(clause.OnConflict{
