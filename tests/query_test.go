@@ -9,7 +9,7 @@ import (
 
 func TestQuery(t *testing.T) {
 	var arrs []*T1
-	res := db.Order("id").Where("G_COL = ?", true).Find(&arrs)
+	res := db.Order("id").Where("g_col = ?", true).Find(&arrs)
 	fmt.Println(arrs)
 	assert.Nil(t, res.Error)
 }
