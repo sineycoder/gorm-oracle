@@ -95,7 +95,7 @@ func Create(db *gorm.DB) {
 				_ = db.AddError(err)
 				return
 			}
-			if !hasBatch {
+			if !hasBatch && !hasConflict {
 				db.RowsAffected, err = result.RowsAffected()
 				if err != nil {
 					panic(err)
